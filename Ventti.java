@@ -1,18 +1,18 @@
-package Rahapelisimulaattori;
+package rahapeliSimulaattori;
 import java.util.Arrays;
 import java.util.ArrayList;
 
 public class Ventti {
-    private ArrayList<int> pakka = new ArrayList();
+    ArrayList pakka = new ArrayList();
     
-    public static void alustaPakka(ArrayList<int> pakka) {
-        this.pakka=pakka;
+    public void alustaPakka() {
+        //this.pakka=pakka;
         pakka.clear();
 
     }
-    public static void taytaPakka(ArrayList<int> pakka) {
-        for (int i=2; i++; i<=14;) {
-            for (int j=0; j++; j<=4;) {
+    public void taytaPakka() {
+        for (int i=2; i<=14; i++) {
+            for (int j=0; j<=4; i++) {
                 pakka.add(i);
             }
         }
