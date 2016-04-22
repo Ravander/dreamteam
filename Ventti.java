@@ -12,7 +12,7 @@ public class Ventti {
     }
     public void taytaPakka() {
         for (int i=2; i<=14; i++) {
-            for (int j=0; j<=4; i++) {
+            for (int j=1; j<=4; j++) {
                 pakka.add(i);
             }
         }
