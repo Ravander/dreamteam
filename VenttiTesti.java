@@ -7,11 +7,15 @@ public static void main(String[] args) {
     Ventti testiVentti = new Ventti();
     testiVentti.alustaPakka();
     testiVentti.taytaPakka();
-    System.out.println("Testi!");
+    /*System.out.println("Testi!");
     for (int i=0; i<=testiVentti.pakka.size()-1; i++) {
         System.out.println(testiVentti.pakka.get(i));
         }
-    System.out.println("testi");
+    System.out.println("testi");*/
     testiVentti.jakajanKasi();
+    /*System.out.println("Pakassa jäljellä:");
+    for (int i=0; i<=testiVentti.pakka.size()-1; i++) {
+        System.out.println(testiVentti.pakka.get(i));
+    }*/
     }
 }
