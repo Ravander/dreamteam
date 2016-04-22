@@ -12,5 +12,6 @@ public static void main(String[] args) {
         System.out.println(testiVentti.pakka.get(i));
         }
     System.out.println("testi");
+    testiVentti.jakajanKasi();
     }
 }
