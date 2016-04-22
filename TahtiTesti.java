@@ -14,6 +14,9 @@ public class TahtiTesti {
         tahtipeli.lukitse(lukkoLista);
         xx = tahtipeli.arvoRivi(rivi, lukot);
         System.out.println( xx );
+        
+        double kalle = tahtipeli.tuplaus(2.0);
+        System.out.println(kalle);
     }
 
 }

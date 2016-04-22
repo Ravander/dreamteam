@@ -12,7 +12,6 @@ public class Tahti extends Peli {
     
     private char arvoMerkki() { 
       
-        Random arpa = new Random();
         int arvo = arpa.nextInt(5);           
         return merkit[arvo];    
     }
