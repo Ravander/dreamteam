@@ -1,7 +1,7 @@
 package rahapeliSimulaattori;
 import java.util.Random;
 
-public class Tahti {
+public class Tahti extends Peli {
 
     private char[] merkit = { 'a', 'b', 'c', 'd', '*' };
     private int[] lukitut = { 0, 0, 0 };
