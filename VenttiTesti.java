@@ -12,7 +12,7 @@ public static void main(String[] args) {
         System.out.println(testiVentti.pakka.get(i));
         }
     System.out.println("testi");*/
-    testiVentti.jakajanKasi();
+    testiVentti.pelaajanKasi();
     /*System.out.println("Pakassa jäljellä:");
     for (int i=0; i<=testiVentti.pakka.size()-1; i++) {
         System.out.println(testiVentti.pakka.get(i));

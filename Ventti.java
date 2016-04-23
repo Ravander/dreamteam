@@ -52,6 +52,31 @@ public class Ventti extends Peli {
         } while (jakajanArvo <= 17);
         return jakajanKortit;
     }
+    public ArrayList<Integer> pelaajanKasi() {
+        int pelaajanArvo = 0;
+        int jaettuKortti;
+        char jatketaan;
+        do {
+            jaettuKortti = jako();
+            pelaajanKortit.add(jaettuKortti);
+            pelaajanArvo = kadenArvo(pelaajanKortit);
+            System.out.println("Sait kortin "+jaettuKortti+", kätesi arvo on nyt "+pelaajanArvo);
+            if (pelaajanArvo > 21) {
+                if (pelaajanKortit.contains(14)) {
+                    pelaajanKortit = assanVaihto(pelaajanKortit);
+                    pelaajanArvo = kadenArvo(pelaajanKortit);
+                    System.out.println("Ässät vaihdettu");
+                }
+                else {
+                    System.out.println("Käden arvo on yli 21!");
+                    break;
+                }
+            }
+            System.out.print("Haluatko jatkaa (k/e): ");
+            jatketaan = lukija.next().charAt(0);
+        } while (pelaajanArvo <= 21 && jatketaan !='e');
+        return pelaajanKortit;
+    }
     public ArrayList<Integer> assanVaihto(ArrayList<Integer> vaihdettavatKortit) {
         for (int i=0; i<=vaihdettavatKortit.size()-1; i++) {
             if (vaihdettavatKortit.get(i) == 14) {
