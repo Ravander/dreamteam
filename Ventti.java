@@ -9,7 +9,6 @@ public class Ventti extends Peli {
     
     public void alustaPakka() {
         pakka.clear();
-
     }
     public void taytaPakka() { //Täyttää pakan "korteilla" 2-14
         for (int i=2; i<=14; i++) {
