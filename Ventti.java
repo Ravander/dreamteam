@@ -75,7 +75,7 @@ public class Ventti extends Peli {
                     break;
                 }
             }
-            System.out.print("Haluatko jatkaa (k/e): ");
+            System.out.print("Haluatko lisää kortteja (k/e)? ");
             jatketaan = lukija.next().charAt(0);
         } while (pelaajanArvo <= 21 && jatketaan !='e');
         return pelaajanKortit;
