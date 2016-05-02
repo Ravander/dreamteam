@@ -90,7 +90,7 @@ public class Tahti extends Peli {
         String rivi = "ooo";
         boolean pelaa = true;
         
-        while (pelaa && rahaMaara > 0) {
+        while (pelaa && rahaMaara > panos) {
             char[] riviLista = { 'o', 'o', 'o' };
             resetLukot();
             rivi = arvoRivi( riviLista, getLukitut() );
