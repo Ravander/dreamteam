@@ -119,6 +119,7 @@ public class Ventti extends Peli {
             voittaja = kukaVoitti(pelaajanKasi(),jakajanKasi());
             switch (voittaja) {
                 case "pelaaja":
+                    panos = tuplausCheck(panos);
                     rahaMaara += panos;
                     break;
                 case "jakaja":
