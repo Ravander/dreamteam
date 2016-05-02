@@ -48,16 +48,31 @@ public class Tahti extends Peli {
     
         double voitto = 0;
         switch (rivi) {
-            case "aaa":
+            
+            case "*ab": case "*ac": case "*ad": 
+            case "*ba": case "*bc": case "*bd": 
+            case "*ca": case "*cb": case "*cd": 
+            case "*da": case "*db": case "*dc":
+            case "ab*": case "ac*": case "ad*": 
+            case "ba*": case "bc*": case "bd*": 
+            case "ca*": case "cb*": case "cd*": 
+            case "da*": case "db*": case "dc*":
+                voitto = panos * 2;
+                break;
+            case "aaa": case "*aa": case "a*a": case "aa*":
+            case "a**": case "**a": case "*a*":
                 voitto = panos * 3;
                 break;
-            case "bbb":
+            case "bbb": case "*bb": case "b*b": case "bb*":
+            case "b**": case "**b": case "*b*":
                 voitto = panos * 5;
                 break;
-            case "ccc":
+            case "ccc": case "*cc": case "c*c": case "cc*":
+            case "c**": case "**c": case "*c*":
                 voitto = panos * 10;
                 break;
-            case "ddd":
+            case "ddd": case "*dd": case "d*d": case "dd*":
+            case "d**": case "**d": case "*d*":
                 voitto = panos * 15;
                 break;
             case "***":
@@ -65,6 +80,7 @@ public class Tahti extends Peli {
                 break;
             default:
                 voitto -= panos;
+                break;
         }
         return voitto;
     }
@@ -72,7 +88,9 @@ public class Tahti extends Peli {
     public double pelaa(double rahaMaara, double panos) {
         
         String rivi = "ooo";
-        while (rahaMaara > 0) {
+        boolean pelaa = true;
+        
+        while (pelaa && rahaMaara > 0) {
             char[] riviLista = { 'o', 'o', 'o' };
             resetLukot();
             rivi = arvoRivi( riviLista, getLukitut() );
@@ -85,7 +103,9 @@ public class Tahti extends Peli {
                 System.out.println(rivi);
                 rahaMaara += tarkistaVoitto(rivi, panos);
             }
+            System.out.println("Voitto: " + tarkistaVoitto(rivi, panos) );
             System.out.println("Sinulla on rahaa: " + rahaMaara);
+            pelaa = jatkaminen();
         }
         return rahaMaara;        
     }

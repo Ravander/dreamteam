@@ -20,7 +20,18 @@ public class Peli {
     public double getVoitot() {
         return voitot;
     }
+    public boolean jatkaminen() {
     
+        System.out.println("Haluatko jatkaa? (k/e)");
+        System.out.print("> ");
+        switch ( lukija.next().charAt(0) ) {
+            case 'k':
+                return true;
+            default:
+                break;
+        }
+        return false;
+    }
     public static double tuplaus(double voitto) {
     
         int arvo = arpa.nextInt(2);

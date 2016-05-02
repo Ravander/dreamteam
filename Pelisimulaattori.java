@@ -10,9 +10,13 @@ public class Pelisimulaattori {
     private static Keno keno;
     
     public static void main(String[] args) {
+    
+        String valinta;
         alusta();
-        String valinta = valitsePeli(); 
-        pelaa(valinta);          
+        do {
+            valinta = valitsePeli(); 
+            pelaaja.setRahaMaara( pelaa(valinta) );
+        } while (valinta != "lopeta");          
     }
     
     public static void alusta() {
@@ -52,42 +56,44 @@ public class Pelisimulaattori {
         int valinta;
         String peliValinta = "";
         
-        do {
-            valinta = lukija.nextInt();
-            switch (valinta) {
-        
-                case 1:
-                    peliValinta = "tahti";
-                    break;
-                case 2:
-                    peliValinta = "ventti";
-                    break;
-                case 3:
-                    peliValinta = "keno";
-                    break;
-                default:
-                    System.out.println("Valitse sopiva peli!");
-            }
-        } while (valinta < 1 || valinta > 3);
+        valinta = lukija.nextInt();
+        switch (valinta) {
+    
+            case 1:
+                peliValinta = "tahti";
+                break;
+            case 2:
+                peliValinta = "ventti";
+                break;
+            case 3:
+                peliValinta = "keno";
+                break;
+            default:
+                peliValinta = "lopeta";
+                break;
+        }
         return peliValinta;
     }
     
-    public static void pelaa(String peli) {
+    public static double pelaa(String peli) {
     
+        double saldo = pelaaja.getRahaMaara();
+        
         switch (peli) {
         
             case "tahti":
-                tahti.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                saldo = tahti.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             case "ventti":
-                ventti.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                //saldo = ventti.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             case "keno":
-                keno.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                //saldo = keno.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             default:
-                System.out.println("Virhe 666");
+                System.out.println("Kiitos pelaamisesta!");
+                break;
         }
-    
+        return saldo;
     }
 }
