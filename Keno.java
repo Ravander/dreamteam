@@ -8,7 +8,7 @@ public class Keno extends Peli {
     private ArrayList<Integer> arvotutNumerot = new ArrayList();
     private ArrayList<Integer> pelaajanNumerot = new ArrayList();
     private int annetutNumerot = 0, osumat = 0;
-    private int[] voitto = {4, 0, 0, 0, 1, 2, 3, 4, 10};
+    private final int[] voitto = {4, 0, 0, 0, 1, 2, 3, 4, 10};
 
     public void valitseNumerot() {
         /*valitaan 9 numeroa väliltä 1-40*/
@@ -21,7 +21,8 @@ public class Keno extends Peli {
             /*Tarkistetaan että numero sopii peliin*/
             if (luku <= 0 || luku > 40) {
                 System.out.println("Antamasi numero ei kelpaa");
-            } else /*Tarkistetaan ettei numero ole jo valittuna. Jos ei ole lisätään luku valittuihin lukuihin*/ {
+			/*Tarkistetaan ettei numero ole jo valittuna. Jos ei ole lisätään luku valittuihin lukuihin*/
+            } else {
                 if (pelaajanNumerot.size() == 0) {
                     pelaajanNumerot.add(luku);
                     annetutNumerot++;
@@ -51,8 +52,7 @@ public class Keno extends Peli {
                 System.out.println("Jatketaanko näillä numeroilla? k/e");
                 char valinta = lukija.next().charAt(0);
                 if (valinta == 'e') {
-                    annetutNumerot = 0;
-                    pelaajanNumerot.clear();
+					alustus();
                 }
             }
         } while (annetutNumerot < 9);
@@ -101,10 +101,24 @@ public class Keno extends Peli {
     }
     
     public double pelaa(double rahaMaara, double panos){
-        valitseNumerot();
-        arvoNumerot();
-        osumienTarkistus();
-        return (rahaMaara+panos*voitto());
-    }
-
+		boolean pelaa = true;
+		while (pelaa && rahaMaara>panos){
+			rahaMaara = rahaMaara-panos;
+			valitseNumerot();
+			arvoNumerot();
+			osumienTarkistus();
+			System.out.println("Voitit: " + panos*voitto());
+			alustus();
+			pelaa = jatkaminen();	
+		}
+		return (rahaMaara+panos*voitto());
+	}
+	
+	public void alustus(){
+		annetutNumerot = 0;
+		osumat = 0;
+		pelaajanNumerot.clear();
+		arvotutNumerot.clear();
+	}
+	
 }
