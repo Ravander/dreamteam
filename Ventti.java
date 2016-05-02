@@ -17,6 +17,10 @@ public class Ventti extends Peli {
             }
         }
     }
+    public void alustaKadet() {
+        jakajanKortit.clear();
+        pelaajanKortit.clear();
+    }
     public int kadenArvo(ArrayList<Integer> kasi) {
         int arvo = 0;
         for (Integer lisays : kasi) {
@@ -110,6 +114,7 @@ public class Ventti extends Peli {
         do {
             alustaPakka();
             taytaPakka();
+            alustaKadet();
             voittaja = kukaVoitti(pelaajanKasi(),jakajanKasi());
             //jakajanKasi();
             //pelaajanKasi();
@@ -121,9 +126,10 @@ public class Ventti extends Peli {
                     rahaMaara -= panos;
                     break;
             }
+            System.out.println("Sinulla on nyt " +rahaMaara+ " rahaa.");
             System.out.print("Jatketaanko (k/e)? ");
             jatkuu = lukija.next().charAt(0);
-        } while (jatkuu != 'e');
+        } while (jatkuu != 'e' & rahaMaara > 0);
         return rahaMaara;
     }
 }
