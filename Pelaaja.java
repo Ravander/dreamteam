@@ -20,7 +20,12 @@ public class Pelaaja {
     }
 
     public void setRahaMaara(double rahaMaara) {
-        this.rahaMaara = rahaMaara;
+        if (rahaMaara >= 0) {
+            this.rahaMaara = rahaMaara;
+        } else {
+            System.out.println("Virhe 666");
+            this.rahaMaara = 0.00;
+        }
     }
 
     public String getNimi() {
@@ -28,7 +33,12 @@ public class Pelaaja {
     }
 
     public void setNimi(String nimi) {
-        this.nimi = nimi;
+        if (nimi.length() < 1 || nimi.length() > 15) {
+            System.out.println("Virhe 666");
+            this.nimi = "nimeton";
+        } else {
+            this.nimi = nimi;
+        }
     }
 
     public int getIka() {
@@ -36,7 +46,17 @@ public class Pelaaja {
     }
 
     public void setIka(int ika) {
-        this.ika = ika;
+        if (ika >= 18) {
+            this.ika = ika;
+        } else {
+            System.out.println("Olet liian nuori pelaamaan...");
+            System.out.println("..Mutta olkoon menneeksi.");
+        }
+    }
+    public String toString() {
+        String teksti = "Pelaajan nimi: " + nimi + 
+            ", ikä: " + ika + ", saldo: " + rahaMaara;
+        return teksti;
     }
        
 }

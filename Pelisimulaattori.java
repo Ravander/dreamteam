@@ -34,16 +34,18 @@ public class Pelisimulaattori {
     public static void luoPelaaja() {
     
         System.out.println("Hei! Kuka olet?");
-        System.out.print("Olen ");
+        System.out.print("> Olen ");
         String nimi = lukija.nextLine();
         
         System.out.println("Kuinka vanha olet?");
-        System.out.print("Olen ");
+        System.out.print("> Olen ");
         int ika = lukija.nextInt();
         
         System.out.println("Paljonko haluat syytää rahaa?");
-        System.out.print("Sijoitan ");
+        System.out.print("> Sijoitan ");
         double rahaMaara = lukija.nextDouble();
+        
+        System.out.println();
         
         pelaaja = new Pelaaja(rahaMaara, nimi, ika);
     }
@@ -51,7 +53,8 @@ public class Pelisimulaattori {
     public static String valitsePeli() {
     
         System.out.println("Valitse peli");
-        System.out.println("1: Tähti, 2: Ventti, 3: Keno");
+        System.out.println("============");
+        System.out.println("0: *LOPETA* 1: Tähti, 2: Ventti, 3: Keno 4: *INFO*");
         System.out.print("> ");
         int valinta;
         String peliValinta = "";
@@ -67,6 +70,9 @@ public class Pelisimulaattori {
                 break;
             case 3:
                 peliValinta = "keno";
+                break;
+            case 4:
+                peliValinta = "info";
                 break;
             default:
                 peliValinta = "lopeta";
@@ -89,6 +95,11 @@ public class Pelisimulaattori {
                 break;
             case "keno":
                 saldo = keno.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                break;
+            case "info":
+                System.out.print("\nINFO\n");
+                System.out.println(pelaaja);
+                System.out.println();
                 break;
             default:
                 System.out.println("Kiitos pelaamisesta!");
