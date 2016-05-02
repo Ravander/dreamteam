@@ -25,7 +25,7 @@ public class Peli {
         System.out.println("Haluatko jatkaa? (k/e)");
         System.out.print("> ");
         switch ( lukija.next().charAt(0) ) {
-            case 'k' case 'K':
+            case 'k': case 'K':
                 return true;
             default:
                 break;
