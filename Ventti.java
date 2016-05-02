@@ -126,7 +126,7 @@ public class Ventti extends Peli {
                     rahaMaara -= panos;
                     break;
             }
-            System.out.println("Sinulla on nyt " +rahaMaara+ " rahaa.");
+            System.out.println("Sinulla on nyt " +rahaMaara+ "0 rahaa.");
             pelaa = jatkaminen();
         }
         return rahaMaara;
