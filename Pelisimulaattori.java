@@ -80,10 +80,10 @@ public class Pelisimulaattori {
                 tahti.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             case "ventti":
-                //ventti.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                ventti.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             case "keno":
-                //keno.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                keno.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             default:
                 System.out.println("Virhe 666");

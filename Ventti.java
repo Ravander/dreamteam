@@ -25,7 +25,7 @@ public class Ventti extends Peli {
         return arvo;
     }
     public int jako() {
-        int jaetunIndeksi = (arpa.nextInt((pakka.size()-1)));
+        int jaetunIndeksi = arpa.nextInt( pakka.size() ) - 1;
         int jaettavaKortti = pakka.get(jaetunIndeksi);
         pakka.remove(jaetunIndeksi);
         return jaettavaKortti;
@@ -106,12 +106,24 @@ public class Ventti extends Peli {
     }
     public double pelaa(double rahaMaara, double panos) {
         char jatkuu;
+        String voittaja;
         do {
-            kukaVoitti(pelaajanKasi(),jakajanKasi());
+            alustaPakka();
+            taytaPakka();
+            voittaja = kukaVoitti(pelaajanKasi(),jakajanKasi());
             //jakajanKasi();
             //pelaajanKasi();
+            switch (voittaja) {
+                case "pelaaja":
+                    rahaMaara += panos;
+                    break;
+                case "jakaja":
+                    rahaMaara -= panos;
+                    break;
+            }
             System.out.print("Jatketaanko (k/e)? ");
             jatkuu = lukija.next().charAt(0);
         } while (jatkuu != 'e');
+        return rahaMaara;
     }
 }
