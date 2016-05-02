@@ -32,13 +32,35 @@ public class Peli {
         }
         return false;
     }
-    public static double tuplaus(double voitto) {
+    public static double tuplausCheck(double voitto) {
+    
+        if (voitto > 0) {
+            System.out.println("Haluatko tuplata? (k/e)");
+            System.out.print("> ");
+            while ( lukija.next().charAt(0) == 'k' && voitto > 0) {
+                voitto = tuplaus(voitto);
+                System.out.println("voittosi: " + voitto);
+                if (voitto > 0) {
+                    System.out.println("Haluatko jatkaa tuplaamista?");
+                    System.out.print("> ");
+                } else {
+                    return voitto;
+                }
+            }
+            return voitto;
+        } else {
+            return voitto;
+        }     
+    }
+    private static double tuplaus(double rahaMaara) {
     
         int arvo = arpa.nextInt(2);
         if (arvo < 1) {
+            System.out.println("Tuplaus epäonnistui!");
             return 0;
         } else {
-            return (voitto * 2);
+            System.out.println("Tuplaus onnistui!");
+            return (rahaMaara * 2);
         }
     }
 }

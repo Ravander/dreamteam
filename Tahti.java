@@ -79,7 +79,6 @@ public class Tahti extends Peli {
                 voitto = panos * 20;
                 break;
             default:
-                voitto -= panos;
                 break;
         }
         return voitto;
@@ -88,22 +87,26 @@ public class Tahti extends Peli {
     public double pelaa(double rahaMaara, double panos) {
         
         String rivi = "ooo";
+        double voitto;
         boolean pelaa = true;
         
         while (pelaa && rahaMaara > panos) {
+            rahaMaara = rahaMaara - panos;
             char[] riviLista = { 'o', 'o', 'o' };
             resetLukot();
             rivi = arvoRivi( riviLista, getLukitut() );
             System.out.println(rivi);
             if (tarkistaVoitto(rivi, panos) > 0) {
-                rahaMaara += tarkistaVoitto(rivi, panos);
+                voitto = tarkistaVoitto(rivi, panos);
             } else {
                 lukitse();
                 rivi = arvoRivi( riviLista, getLukitut() );
                 System.out.println(rivi);
-                rahaMaara += tarkistaVoitto(rivi, panos);
+                voitto = tarkistaVoitto(rivi, panos);
             }
-            System.out.println("Voitto: " + tarkistaVoitto(rivi, panos) );
+            System.out.println("Voitto: " + voitto );
+            voitto = tuplausCheck(voitto);
+            rahaMaara += voitto;
             System.out.println("Sinulla on rahaa: " + rahaMaara);
             pelaa = jatkaminen();
         }
