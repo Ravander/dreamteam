@@ -8,7 +8,7 @@ public class Keno extends Peli {
     private ArrayList<Integer> arvotutNumerot = new ArrayList();
     private ArrayList<Integer> pelaajanNumerot = new ArrayList();
     private int annetutNumerot = 0, osumat = 0;
-    private final int[] voitto = {4, 0, 0, 0, 1, 2, 3, 4, 10};
+    private final int[] voitto = {5, 0, 0, 1, 2, 4, 8, 16, 32};
 
     public void valitseNumerot() {
         /*valitaan 9 numeroa väliltä 1-40*/
@@ -45,9 +45,7 @@ public class Keno extends Peli {
             if (annetutNumerot == 9) {
                 System.out.println();
                 System.out.println("Antamasi numerot: ");
-                for (int i = 0; i <= 8; i++) {
-                    System.out.print(pelaajanNumerot.get(i) + " ");
-                }
+				tulostaPelaajanNumerot();
                 System.out.println();
                 System.out.println("Jatketaanko näillä numeroilla? k/e");
                 char valinta = lukija.next().charAt(0);
@@ -83,6 +81,7 @@ public class Keno extends Peli {
                 osumat++;
             }
         }
+		System.out.println();
         System.out.println("Osumia: " + osumat);
 
     }
@@ -99,6 +98,12 @@ public class Keno extends Peli {
     public int getAnnetutNumerot() {
         return annetutNumerot;
     }
+	
+	public void tulostaPelaajanNumerot() {
+		for (int i = 0; i <= 8; i++) {
+            System.out.print(pelaajanNumerot.get(i) + " ");
+        }
+	}
     
     public double pelaa(double rahaMaara, double panos){
 		boolean pelaa = true;
@@ -106,12 +111,18 @@ public class Keno extends Peli {
 			rahaMaara = rahaMaara-panos;
 			valitseNumerot();
 			arvoNumerot();
+			System.out.println();
+			System.out.println("Sinun numerosi: ");
+			tulostaPelaajanNumerot();
 			osumienTarkistus();
 			System.out.println("Voitit: " + panos*voitto());
+			double voitto = tuplausCheck(panos*voitto());
+			rahaMaara += panos*voitto;
+			System.out.println("Rahaa jäljellä: " + rahaMaara);
 			alustus();
-			pelaa = jatkaminen();	
+			pelaa = jatkaminen();
 		}
-		return (rahaMaara+panos*voitto());
+		return (rahaMaara);
 	}
 	
 	public void alustus(){
