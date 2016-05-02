@@ -89,29 +89,29 @@ public class Ventti extends Peli {
         int jakajanArvo = kadenArvo(jakajanKortit);
         if (pelaajanArvo > 21 & jakajanArvo > 21) {
             System.out.println("Jakaja voitti!");
-            return "jakaja"
+            return "jakaja";
         }
         else if (pelaajanArvo > jakajanArvo & pelaajanArvo <= 21 | jakajanArvo > 21) {
             System.out.println("Voitit jakajan!");
-            return "pelaaja"
+            return "pelaaja";
         }
         else if (pelaajanArvo > 21 | jakajanArvo > pelaajanArvo) {
             System.out.println("Jakaja voitti!");
-            return "jakaja"
+            return "jakaja";
         }
         else {
             System.out.println("Tasapeli!");
-            return "tasapeli"
+            return "tasapeli";
         }
     }
-    public double pelaa(double rahaMaara double panos) {
+    public double pelaa(double rahaMaara, double panos) {
         char jatkuu;
         do {
             kukaVoitti(pelaajanKasi(),jakajanKasi());
             //jakajanKasi();
             //pelaajanKasi();
             System.out.print("Jatketaanko (k/e)? ");
-            lukija.next().charAt(0)
-        }
+            jatkuu = lukija.next().charAt(0);
+        } while (jatkuu != 'e');
     }
 }
