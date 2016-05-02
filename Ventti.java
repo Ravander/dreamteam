@@ -84,4 +84,13 @@ public class Ventti extends Peli {
         }
         return vaihdettavatKortit;
     }
+    public double pelaa(double rahaMaara double panos) {
+        char jatkuu;
+        do {
+            jakajanKasi();
+            pelaajanKasi();
+            //System.out.print("Jatketaanko (k/e)? ");
+            //lukija.next().charAt(0)
+        }
+    }
 }
