@@ -25,7 +25,7 @@ public class Pelisimulaattori {
         ventti = new Ventti();
         keno = new Keno();
         
-        System.out.println("Tervetuloa hyväntahdonpeleihin!");
+        System.out.println("Tervetuloa Hyväntahdon Peleihin!");
         System.out.println("===============================");
         
         luoPelaaja();
@@ -40,6 +40,10 @@ public class Pelisimulaattori {
         System.out.println("Kuinka vanha olet?");
         System.out.print("> Olen ");
         int ika = lukija.nextInt();
+        if (ika < 18) {
+            System.out.println("Olet liian nuori pelaamaan...");
+            System.out.println("...Mutta olkoon menneeksi!");
+        }
         
         System.out.println("Paljonko haluat syytää rahaa?");
         System.out.print("> Sijoitan ");
@@ -52,9 +56,17 @@ public class Pelisimulaattori {
     
     public static String valitsePeli() {
     
-        System.out.println("Valitse peli");
-        System.out.println("============");
-        System.out.println("0: *LOPETA* 1: Tähti, 2: Ventti, 3: Keno 4: *INFO*");
+        System.out.println();
+        System.out.println("RAY-SKA Rahapelisimulaattori");
+        System.out.println("============================");
+        System.out.print(" " + pelaaja.getNimi() + "\t\t" + pelaaja.getRahaMaara() + "0 €\n" );
+        System.out.println("============================");
+        System.out.println("0: LOPETA");
+        System.out.println("1: TÄHTI");
+        System.out.println("2: VENTTI"); 
+        System.out.println("3: KENO"); 
+        System.out.println("4: INFO");
+        System.out.println("============================");
         System.out.print("> ");
         int valinta;
         String peliValinta = "";
@@ -83,18 +95,27 @@ public class Pelisimulaattori {
     
     public static double pelaa(String peli) {
     
-        double saldo = pelaaja.getRahaMaara();
+        double panos, saldo = pelaaja.getRahaMaara();
         
         switch (peli) {
         
             case "tahti":
-                saldo = tahti.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                System.out.println("Aseta panos");
+                System.out.print("> ");
+                panos = lukija.nextDouble();
+                saldo = tahti.pelaa( pelaaja.getRahaMaara(), panos );
                 break;
             case "ventti":
-                saldo = ventti.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                System.out.println("Aseta panos");
+                System.out.print("> ");
+                panos = lukija.nextDouble();
+                saldo = ventti.pelaa( pelaaja.getRahaMaara(), panos );
                 break;
             case "keno":
-                saldo = keno.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                System.out.println("Aseta panos");
+                System.out.print("> ");
+                panos = lukija.nextDouble();
+                saldo = keno.pelaa( pelaaja.getRahaMaara(), panos );
                 break;
             case "info":
                 System.out.print("\nINFO\n");

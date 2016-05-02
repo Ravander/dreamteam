@@ -39,7 +39,7 @@ public class Peli {
             System.out.print("> ");
             while ( lukija.next().charAt(0) == 'k' && voitto > 0) {
                 voitto = tuplaus(voitto);
-                System.out.println("voittosi: " + voitto);
+                System.out.println("voittosi: " + voitto + "0 €");
                 if (voitto > 0) {
                     System.out.println("Haluatko jatkaa tuplaamista?");
                     System.out.print("> ");

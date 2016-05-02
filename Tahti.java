@@ -104,10 +104,10 @@ public class Tahti extends Peli {
                 System.out.println(rivi);
                 voitto = tarkistaVoitto(rivi, panos);
             }
-            System.out.println("Voitto: " + voitto );
+            System.out.println("Voitto: " + voitto + "0 €" );
             voitto = tuplausCheck(voitto);
             rahaMaara += voitto;
-            System.out.println("Sinulla on rahaa: " + rahaMaara);
+            System.out.println("Sinulla on rahaa: " + rahaMaara + "0 €");
             pelaa = jatkaminen();
         }
         return rahaMaara;        

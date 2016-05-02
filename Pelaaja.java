@@ -55,7 +55,7 @@ public class Pelaaja {
     }
     public String toString() {
         String teksti = "Pelaajan nimi: " + nimi + 
-            ", ikä: " + ika + ", saldo: " + rahaMaara;
+            ", ikä: " + ika + ", saldo: " + rahaMaara + "0 €";
         return teksti;
     }
        
