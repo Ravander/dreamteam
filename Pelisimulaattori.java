@@ -85,10 +85,10 @@ public class Pelisimulaattori {
                 saldo = tahti.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             case "ventti":
-                //saldo = ventti.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                saldo = ventti.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             case "keno":
-                //saldo = keno.pelaa( pelaaja.getRahaMaara(), 0.50 );
+                saldo = keno.pelaa( pelaaja.getRahaMaara(), 0.50 );
                 break;
             default:
                 System.out.println("Kiitos pelaamisesta!");
