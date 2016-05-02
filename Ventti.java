@@ -109,15 +109,13 @@ public class Ventti extends Peli {
         }
     }
     public double pelaa(double rahaMaara, double panos) {
-        char jatkuu;
+        boolean pelaa = true;
         String voittaja;
-        do {
+        while (pelaa && rahaMaara > panos) {
             alustaPakka();
             taytaPakka();
             alustaKadet();
             voittaja = kukaVoitti(pelaajanKasi(),jakajanKasi());
-            //jakajanKasi();
-            //pelaajanKasi();
             switch (voittaja) {
                 case "pelaaja":
                     rahaMaara += panos;
@@ -127,9 +125,8 @@ public class Ventti extends Peli {
                     break;
             }
             System.out.println("Sinulla on nyt " +rahaMaara+ " rahaa.");
-            System.out.print("Jatketaanko (k/e)? ");
-            jatkuu = lukija.next().charAt(0);
-        } while (jatkuu != 'e' & rahaMaara > 0);
+            pelaa = jatkaminen();
+        }
         return rahaMaara;
     }
 }
