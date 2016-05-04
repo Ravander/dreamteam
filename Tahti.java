@@ -34,7 +34,7 @@ public class Tahti extends Peli {
         System.out.println("Valitse lukitukset");
         for (int i = 0; i < 3; i++) {
             System.out.print("> ");
-            lukot[i] = lukija.nextInt();
+            lukot[i] = syotaInt();
         }
         setLukitut(lukot);
     }
@@ -90,7 +90,7 @@ public class Tahti extends Peli {
         double voitto;
         boolean pelaa = true;
         
-        while (pelaa && rahaMaara > panos) {
+        while (pelaa && rahaMaara >= panos) {
             rahaMaara = rahaMaara - panos;
             char[] riviLista = { 'o', 'o', 'o' };
             resetLukot();

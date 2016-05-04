@@ -1,6 +1,7 @@
 package rahapeliSimulaattori;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Peli {
     
@@ -24,20 +25,19 @@ public class Peli {
     
         System.out.println("Haluatko jatkaa? (k/e)");
         System.out.print("> ");
-        switch ( lukija.next().charAt(0) ) {
-            case 'k': case 'K':
-                return true;
-            default:
-                break;
-        }
-        return false;
+        char valinta = syotaChar();
+		if (valinta == 'k') {
+			return true;
+		} else {
+			return false;
+		}
     }
-    public static double tuplausCheck(double voitto) {
+    public double tuplausCheck(double voitto) {
     
         if (voitto > 0) {
             System.out.println("Haluatko tuplata? (k/e)");
             System.out.print("> ");
-            while ( lukija.next().charAt(0) == 'k' && voitto > 0) {
+            while ( syotaChar() == 'k' && voitto > 0) {
                 voitto = tuplaus(voitto);
                 System.out.println("voittosi: " + voitto + "0 €");
                 if (voitto > 0) {
@@ -52,7 +52,7 @@ public class Peli {
             return voitto;
         }     
     }
-    private static double tuplaus(double rahaMaara) {
+    private double tuplaus(double rahaMaara) {
     
         int arvo = arpa.nextInt(2);
         if (arvo < 1) {
@@ -63,4 +63,75 @@ public class Peli {
             return (rahaMaara * 2);
         }
     }
+	
+	//Error-handling
+	//==============
+	
+	public static int syotaInt() {
+		boolean onkoNumero = false;
+		int luku = 0;
+		while (!onkoNumero){
+			try {
+				luku = lukija.nextInt();
+				luku = Math.abs(luku);
+				onkoNumero = true;
+			}
+			catch(InputMismatchException e) {
+				lukija.nextLine();
+				System.out.println("Syöttämäsi merkki ei ole numero.");
+				System.out.print("Anna uusi numero: ");
+			}
+		}
+		return luku;
+	}
+	public static double syotaDbl() {
+		boolean onkoNumero = false;
+		double luku = 0.00;
+		while (!onkoNumero){
+			try {
+				luku = lukija.nextDouble();
+				luku = Math.abs(luku);
+				onkoNumero = true;
+			}
+			catch(InputMismatchException e) {
+				lukija.nextLine();
+				System.out.println("Syöttämäsi merkki ei ole numero.");
+				System.out.print("Anna uusi numero: ");
+			}
+		}
+		return luku;
+	}
+	public static String syotaString() {
+		boolean onkoTeksti = false;
+		String teksti = "";
+		while (!onkoTeksti){
+			try {
+				teksti = lukija.next();
+				onkoTeksti = true;
+			}
+			catch(InputMismatchException e) {
+				lukija.nextLine();
+				System.out.println("Syötteesti ei ole merkkijono.");
+				System.out.print("Yritä uudestaan: ");
+			}
+		}
+		return teksti;
+	}
+	public static char syotaChar() {
+		boolean onkoMerkki = false;
+		char merkki = 'o';
+		String apu = "";
+		do {
+			apu = syotaString().toLowerCase();
+			merkki = apu.charAt(0);
+			if (merkki == 'k' || merkki == 'e') {
+				onkoMerkki = true;
+			} else {
+				System.out.println("Syötteesi oli virheellinen!");
+				System.out.println("Syöttäisitkö merkin uudestaan?");
+				System.out.print("> ");
+			}
+		} while (onkoMerkki == false);
+		return merkki;
+	}
 }

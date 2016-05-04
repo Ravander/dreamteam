@@ -92,15 +92,15 @@ public class Ventti extends Peli {
     public String kukaVoitti(ArrayList<Integer> pelaajanKortit, ArrayList<Integer> jakajanKortit) {
         int pelaajanArvo = kadenArvo(pelaajanKortit);
         int jakajanArvo = kadenArvo(jakajanKortit);
-        if (pelaajanArvo > 21 & jakajanArvo > 21) {
+        if (pelaajanArvo > 21 && jakajanArvo > 21) {
             System.out.println("Jakaja voitti!");
             return "jakaja";
         }
-        else if (pelaajanArvo > jakajanArvo & pelaajanArvo <= 21 | jakajanArvo > 21) {
+        else if (pelaajanArvo > jakajanArvo && pelaajanArvo <= 21 || jakajanArvo > 21) {
             System.out.println("Voitit jakajan!");
             return "pelaaja";
         }
-        else if (pelaajanArvo > 21 | jakajanArvo > pelaajanArvo) {
+        else if (pelaajanArvo > 21 || jakajanArvo > pelaajanArvo) {
             System.out.println("Jakaja voitti!");
             return "jakaja";
         }
@@ -112,7 +112,7 @@ public class Ventti extends Peli {
     public double pelaa(double rahaMaara, double panos) {
         boolean pelaa = true;
         String voittaja;
-        while (pelaa && rahaMaara > panos) {
+        while (pelaa && rahaMaara >= panos) {
             alustaPakka();
             taytaPakka();
             alustaKadet();
@@ -126,7 +126,7 @@ public class Ventti extends Peli {
                     rahaMaara -= panos;
                     break;
             }
-            System.out.println("Sinulla on nyt " +rahaMaara+ "0€");
+            System.out.println("Sinulla on nyt " + rahaMaara + "0€");
             pelaa = jatkaminen();
         }
         return rahaMaara;

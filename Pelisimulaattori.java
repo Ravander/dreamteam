@@ -35,11 +35,11 @@ public class Pelisimulaattori {
     
         System.out.println("Hei! Kuka olet?");
         System.out.print("> Olen ");
-        String nimi = lukija.nextLine();
+        String nimi = Peli.syotaString();
         
         System.out.println("Kuinka vanha olet?");
         System.out.print("> Olen ");
-        int ika = lukija.nextInt();
+        int ika = Peli.syotaInt();
         if (ika < 18) {
             System.out.println("Olet liian nuori pelaamaan...");
             System.out.println("...Mutta olkoon menneeksi!");
@@ -47,7 +47,7 @@ public class Pelisimulaattori {
         
         System.out.println("Paljonko haluat syytää rahaa?");
         System.out.print("> Sijoitan ");
-        double rahaMaara = lukija.nextDouble();
+        double rahaMaara = Peli.syotaDbl();
         
         System.out.println();
         
@@ -57,21 +57,22 @@ public class Pelisimulaattori {
     public static String valitsePeli() {
     
         System.out.println();
-        System.out.println("RAY-SKA Rahapelisimulaattori");
-        System.out.println("============================");
+        System.out.println(" RAY-SKA Rahapelisimulaattori");
+        System.out.println("=============================");
         System.out.print(" " + pelaaja.getNimi() + "\t\t" + pelaaja.getRahaMaara() + "0 €\n" );
-        System.out.println("============================");
-        System.out.println("0: LOPETA");
-        System.out.println("1: TÄHTI");
-        System.out.println("2: VENTTI"); 
-        System.out.println("3: KENO"); 
-        System.out.println("4: INFO");
-        System.out.println("============================");
-        System.out.print("> ");
+        System.out.println("=============================");
+        System.out.println(" 0: LOPETA");
+        System.out.println(" 1: TÄHTI");
+        System.out.println(" 2: VENTTI"); 
+        System.out.println(" 3: KENO"); 
+        System.out.println(" 4: INFO");
+		System.out.println(" 5: TALLETUS");
+        System.out.println("=============================");
+        System.out.print(" > ");
         int valinta;
         String peliValinta = "";
         
-        valinta = lukija.nextInt();
+        valinta = Peli.syotaInt();
         switch (valinta) {
     
             case 1:
@@ -86,12 +87,34 @@ public class Pelisimulaattori {
             case 4:
                 peliValinta = "info";
                 break;
+			case 5:
+				peliValinta = "talletus";
+				break;
             default:
                 peliValinta = "lopeta";
                 break;
         }
         return peliValinta;
     }
+	
+	private static double kysyPanos() {
+		
+		System.out.println("Aseta panos");
+		System.out.print("> ");
+		double panos = Peli.syotaDbl();
+		return panos;
+	}
+	
+	private static double lisaaRahaa(Pelaaja p) {
+		
+		System.out.println("Paljonko haluat syytää rahaa?");
+		System.out.print("> ");
+		
+		double maara = Peli.syotaDbl();
+		maara += p.getRahaMaara();
+		
+		return maara;
+	}
     
     public static double pelaa(String peli) {
     
@@ -100,26 +123,25 @@ public class Pelisimulaattori {
         switch (peli) {
         
             case "tahti":
-                System.out.println("Aseta panos");
-                System.out.print("> ");
-                panos = lukija.nextDouble();
+                panos = kysyPanos();
                 saldo = tahti.pelaa( pelaaja.getRahaMaara(), panos );
                 break;
             case "ventti":
-                System.out.println("Aseta panos");
-                System.out.print("> ");
-                panos = lukija.nextDouble();
+                panos = kysyPanos();
                 saldo = ventti.pelaa( pelaaja.getRahaMaara(), panos );
                 break;
             case "keno":
-                System.out.println("Aseta panos");
-                System.out.print("> ");
-                panos = lukija.nextDouble();
+                panos = kysyPanos();
                 saldo = keno.pelaa( pelaaja.getRahaMaara(), panos );
                 break;
             case "info":
                 System.out.print("\nINFO\n");
                 System.out.println(pelaaja);
+                System.out.println();
+                break;
+			case "talletus":
+                System.out.print("\nRAHAN TALLETUS\n");
+                saldo = lisaaRahaa(pelaaja);
                 System.out.println();
                 break;
             default:

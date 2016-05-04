@@ -2,7 +2,6 @@ package rahapeliSimulaattori;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.InputMismatchException;
 
 public class Keno extends Peli {
 
@@ -18,20 +17,8 @@ public class Keno extends Peli {
         do {
             System.out.println();
             System.out.print("Valitse numero väliltä 1-40: ");
-			int luku=0;
-			/*Tarkistetaan että numero sopii peliin*/
-			boolean onkoNumero=false;
-			while (!onkoNumero){
-				try {
-					luku = lukija.nextInt();
-					onkoNumero=true;
-				}
-				catch(InputMismatchException e) {
-					lukija.nextLine();
-					System.out.println("Syöttämäsi merkki ei ole numero.");
-					System.out.print("Anna uusi numero: ");
-				}
-			}
+			int luku = syotaInt();
+			
             if (luku <= 0 || luku > 40) {
                 System.out.println("Antamasi numero ei kelpaa");
 			/*Tarkistetaan ettei numero ole jo valittuna. Jos ei ole lisätään luku valittuihin lukuihin*/
@@ -62,7 +49,7 @@ public class Keno extends Peli {
 				tulostaPelaajanNumerot();
                 System.out.println();
                 System.out.println("Jatketaanko näillä numeroilla? k/e");
-                char valinta = lukija.next().charAt(0);
+                char valinta = syotaChar();
                 if (valinta == 'e') {
 					alustus();
                 }
@@ -121,8 +108,8 @@ public class Keno extends Peli {
     
     public double pelaa(double rahaMaara, double panos){
 		boolean pelaa = true;
-		while (pelaa && rahaMaara>panos){
-			rahaMaara = rahaMaara-panos;
+		while (pelaa && rahaMaara >= panos){
+			rahaMaara = rahaMaara - panos;
 			valitseNumerot();
 			arvoNumerot();
 			System.out.println();
