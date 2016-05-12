@@ -71,7 +71,7 @@ public class Ventti extends Peli {
             pelaajanKortit.add(jaettuKortti);
             pelaajanArvo = kadenArvo(pelaajanKortit);
             System.out.println("Sait kortin " + jaettuKortti + ", kätesi arvo on" 
-                + "nyt " + pelaajanArvo);
+                + " nyt " + pelaajanArvo);
             if (pelaajanArvo > 21) {
                 if (pelaajanKortit.contains(14)) {
                     pelaajanKortit = assanVaihto(pelaajanKortit);
