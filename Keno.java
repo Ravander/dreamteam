@@ -10,12 +10,12 @@ public class Keno extends Peli {
     private int annetutNumerot = 0, osumat = 0;
     private final int[] voitto = {5, 0, 0, 1, 2, 4, 8, 16, 32};
 
-    private public void valitseNumerot() {
+    private void valitseNumerot() {
         /*valitaan 9 numeroa väliltä 1-40*/
         System.out.println("KENO");
-        System.out.println("Pelaaja valitsee yhdeksän numeroa väliltä 1-40. \n +
-			Sen jälkeen kone arpoo yhdeksän numeroa samalta väliltä. + 
-			\nOsumien summa määrää voiton suuruuden");
+        System.out.println("Pelaaja valitsee yhdeksän numeroa väliltä 1-40. \n" +
+			"Sen jälkeen kone arpoo yhdeksän numeroa samalta väliltä." + 
+			"\nOsumien summa määrää voiton suuruuden");
         do {
             System.out.println();
             System.out.print("Valitse numero väliltä 1-40: ");
@@ -60,7 +60,7 @@ public class Keno extends Peli {
         } while (annetutNumerot < 9);
     }
 
-    private public void arvoNumerot() {
+    private void arvoNumerot() {
         /*Arvottujen numeroiden määrä*/
         int Numerot = 0;
         /*Arvotaan 9 numeroa väliltä 1-40*/
@@ -79,7 +79,7 @@ public class Keno extends Peli {
         }
     }
 
-    private public void osumienTarkistus() {
+    private void osumienTarkistus() {
         for (int i = 0; i < 9; i++) {
             if (arvotutNumerot.contains(pelaajanNumerot.get(i))) {
                 osumat++;
@@ -90,20 +90,20 @@ public class Keno extends Peli {
 
     }
 
-    private public int voitto() {
+    private int voitto() {
         int voittoKerroin = voitto[getOsumat()];
         return voittoKerroin;
     }
 
-    private public int getOsumat() {
+    private int getOsumat() {
         return osumat;
     }
 
-    private public int getAnnetutNumerot() {
+    private int getAnnetutNumerot() {
         return annetutNumerot;
     }
 	
-	private public void tulostaPelaajanNumerot() {
+	private void tulostaPelaajanNumerot() {
 		for (int i = 0; i <= 8; i++) {
             System.out.print(pelaajanNumerot.get(i) + " ");
         }
@@ -129,7 +129,7 @@ public class Keno extends Peli {
 		return (rahaMaara);
 	}
 	
-	private public void alustus(){
+	private void alustus(){
 		annetutNumerot = 0;
 		osumat = 0;
 		pelaajanNumerot.clear();
