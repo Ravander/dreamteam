@@ -3,9 +3,9 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 public class Ventti extends Peli {
-    ArrayList<Integer> pakka = new ArrayList<>();
-    ArrayList<Integer> jakajanKortit = new ArrayList<>();
-    ArrayList<Integer> pelaajanKortit = new ArrayList<>();
+    ArrayList<Integer> pakka = new ArrayList<Integer>();
+    ArrayList<Integer> jakajanKortit = new ArrayList<Integer>();
+    ArrayList<Integer> pelaajanKortit = new ArrayList<Integer>();
     
     private void alustaPakka() {
         pakka.clear();
