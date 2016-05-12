@@ -7,24 +7,27 @@ public class Ventti extends Peli {
     ArrayList<Integer> jakajanKortit = new ArrayList<>();
     ArrayList<Integer> pelaajanKortit = new ArrayList<>();
     
-    public void alustaPakka() {
+    private void alustaPakka() {
         pakka.clear();
     }
     
-    // "Kortit" ovat vain integerejä väliltä 2-14, koska ventissä maalla ei ole merkitystä 
-    public void taytaPakka() {
-        for (int i=2; i<=14; i++) {
-            for (int j=1; j<=4; j++) {
+    /* "Kortit" ovat vain integerejä väliltä 2-14, koska ventissä maalla ei ole
+    merkitystä */
+    private void taytaPakka() {
+        for (int i = 2; i <= 14; i++) {
+            for (int j = 1; j <= 4; j++) {
                 pakka.add(i);
             }
         }
     }
-    public void alustaKadet() {
+    
+    private void alustaKadet() {
         jakajanKortit.clear();
         pelaajanKortit.clear();
     }
+    
     // Apumetodi käden arvon laskemiseen
-    public int kadenArvo(ArrayList<Integer> kasi) {
+    private int kadenArvo(ArrayList<Integer> kasi) {
         int arvo = 0;
         for (Integer lisays : kasi) {
             arvo += lisays;
@@ -32,37 +35,34 @@ public class Ventti extends Peli {
         return arvo;
     }
 
-    public int jako() {
-        int jaetunIndeksi = arpa.nextInt( pakka.size() -1 );
+    private int jako() {
+        int jaetunIndeksi = arpa.nextInt( pakka.size() - 1 );
         int jaettavaKortti = pakka.get(jaetunIndeksi);
         pakka.remove(jaetunIndeksi);
         return jaettavaKortti;
     }
     
-    // "Jakajaa" simuloidaan tässä niin, että se ei tavoittele yli 17 arvoista kättä
-    // Jakaja saattaa silti mennä yli, mutta pyrkii ottamaan vähän vähemmän riskejä
-    public ArrayList<Integer> jakajanKasi() {
+    /* "Jakajaa" simuloidaan tässä niin, että se ei tavoittele yli 17 arvoista
+    kättä. Jakaja saattaa silti mennä yli, mutta pyrkii ottamaan vähän vähemmän
+    riskejä */
+    
+    private ArrayList<Integer> jakajanKasi() {
         int jakajanArvo = 0;
         int jaettuKortti;
         do {
             jaettuKortti = jako();
             jakajanKortit.add(jaettuKortti);
             jakajanArvo = kadenArvo(jakajanKortit);
-            /*System.out.println("Jakaja sai kortin "+jaettuKortti);
-            System.out.println("Jakajan arvo: "+jakajanArvo);*/
             if (jakajanArvo > 21 && jakajanKortit.contains(14)) {
                 jakajanKortit = assanVaihto(jakajanKortit);
                 jakajanArvo = kadenArvo(jakajanKortit);
-                /*System.out.println("Ässät vaihdettu ykkösiksi, jakajalla on nyt kortit: ");
-                for (int i=0; i<=jakajanKortit.size()-1; i++) {
-                    System.out.println(jakajanKortit.get(i));
-                }*/
-                System.out.println("Jakajan arvo: "+jakajanArvo);
+                System.out.println("Jakajan arvo: " + jakajanArvo);
             }
         } while (jakajanArvo <= 17);
         return jakajanKortit;
     }
-    public ArrayList<Integer> pelaajanKasi() {
+    
+    private ArrayList<Integer> pelaajanKasi() {
         int pelaajanArvo = 0;
         int jaettuKortti;
         char jatketaan;
@@ -70,13 +70,14 @@ public class Ventti extends Peli {
             jaettuKortti = jako();
             pelaajanKortit.add(jaettuKortti);
             pelaajanArvo = kadenArvo(pelaajanKortit);
-            System.out.println("Sait kortin "+jaettuKortti+", kätesi arvo on nyt "+pelaajanArvo);
+            System.out.println("Sait kortin " + jaettuKortti + ", kätesi arvo on" 
+                + "nyt " + pelaajanArvo);
             if (pelaajanArvo > 21) {
                 if (pelaajanKortit.contains(14)) {
                     pelaajanKortit = assanVaihto(pelaajanKortit);
                     pelaajanArvo = kadenArvo(pelaajanKortit);
                     System.out.println("Ässät vaihdettu");
-                    System.out.println("Kätesi arvo on nyt "+pelaajanArvo);
+                    System.out.println("Kätesi arvo on nyt " + pelaajanArvo);
                 }
                 else {
                     System.out.println("Käden arvo on yli 21!");
@@ -85,31 +86,33 @@ public class Ventti extends Peli {
             }
             System.out.print("Haluatko lisää kortteja (k/e)? ");
             jatketaan = syotaChar();
-        } while (pelaajanArvo <= 21 && jatketaan !='e');
+        } while (pelaajanArvo <= 21 && jatketaan != 'e');
         return pelaajanKortit;
     }
     
-    // Ventissä ässä on arvoltaan 1 tai 14, riippuen siitä kumpi on sopivampi
-    // Käytännössä ässän kannattaa aina olla 14, paitsi jos se aiheuttaa häviön
-    // Tällöin ässästä tulee 1, ja kortteja voidaan ottaa lisää
-    public ArrayList<Integer> assanVaihto(ArrayList<Integer> vaihdettavatKortit) {
-        for (int i=0; i<=vaihdettavatKortit.size()-1; i++) {
+    /* Ventissä ässä on arvoltaan 1 tai 14, riippuen siitä kumpi on sopivampi
+    Käytännössä ässän kannattaa aina olla 14, paitsi jos se aiheuttaa häviön.
+    Tällöin ässästä tulee 1, ja kortteja voidaan ottaa lisää */
+    private ArrayList<Integer> assanVaihto(ArrayList<Integer> vaihdettavatKortit) {
+        for (int i = 0; i<=vaihdettavatKortit.size() - 1; i++) {
             if (vaihdettavatKortit.get(i) == 14) {
-                vaihdettavatKortit.set(i,1);
+                vaihdettavatKortit.set(i, 1);
             }
         }
         return vaihdettavatKortit;
     }
     
     // Vertaillaan mahdollisia lopputuloksia
-    public String kukaVoitti(ArrayList<Integer> pelaajanKortit, ArrayList<Integer> jakajanKortit) {
+    private String kukaVoitti(ArrayList<Integer> pelaajanKortit,
+        ArrayList<Integer> jakajanKortit) {
         int pelaajanArvo = kadenArvo(pelaajanKortit);
         int jakajanArvo = kadenArvo(jakajanKortit);
         if (pelaajanArvo > 21 && jakajanArvo > 21) {
             System.out.println("Jakaja voitti!");
             return "jakaja";
         }
-        else if (pelaajanArvo > jakajanArvo && pelaajanArvo <= 21 || jakajanArvo > 21) {
+        else if (pelaajanArvo > jakajanArvo && pelaajanArvo <= 21 ||
+        jakajanArvo > 21) {
             System.out.println("Voitit jakajan!");
             return "pelaaja";
         }
@@ -122,6 +125,7 @@ public class Ventti extends Peli {
             return "tasapeli";
         }
     }
+    
     public double pelaa(double rahaMaara, double panos) {
         boolean pelaa = true;
         String voittaja;
@@ -129,7 +133,7 @@ public class Ventti extends Peli {
             alustaPakka();
             taytaPakka();
             alustaKadet();
-            voittaja = kukaVoitti(pelaajanKasi(),jakajanKasi());
+            voittaja = kukaVoitti(pelaajanKasi(), jakajanKasi());
             switch (voittaja) {
                 case "pelaaja":
                     panos = tuplausCheck(panos);

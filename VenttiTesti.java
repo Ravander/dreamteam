@@ -1,4 +1,4 @@
-package rahapeliSimulaattori;
+/*package rahapeliSimulaattori;
 import java.util.ArrayList;
 public class VenttiTesti {
     
@@ -15,7 +15,7 @@ public static void main(String[] args) {
         System.out.println(testiVentti.pakka.get(i));
         }
     System.out.println("testi");*/
-    jakajanLopullisetKortit = testiVentti.jakajanKasi();
+    /*jakajanLopullisetKortit = testiVentti.jakajanKasi();
     pelaajanLopullisetKortit = testiVentti.pelaajanKasi();
     int jakajanArvo = testiVentti.kadenArvo(jakajanLopullisetKortit);
     int pelaajanArvo = testiVentti.kadenArvo(pelaajanLopullisetKortit);
@@ -35,6 +35,7 @@ public static void main(String[] args) {
     /*System.out.println("Pakassa jäljellä:");
     for (int i=0; i<=testiVentti.pakka.size()-1; i++) {
         System.out.println(testiVentti.pakka.get(i));
-    }*/
+    }*/ /*
     }
 }
+*/
