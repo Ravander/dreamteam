@@ -6,9 +6,6 @@ import java.util.Scanner;
 Simulaation alustus ja eteneminen tapahtuu tässä pääluokassa.
 Luokka myös luo simulaatiolle oleelliset oliot ja huolehtii olioiden
 päivityksestä.
-=======================
-Tuomas Ravander 2016 
-=======================
 */
 public class Pelisimulaattori {
 
