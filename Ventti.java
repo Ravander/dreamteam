@@ -129,19 +129,25 @@ public class Ventti extends Peli {
     public double pelaa(double rahaMaara, double panos) {
         boolean pelaa = true;
         String voittaja;
+        double voitto;
         while (pelaa && rahaMaara >= panos) {
+            rahaMaara -= panos;
             alustaPakka();
             taytaPakka();
             alustaKadet();
             voittaja = kukaVoitti(pelaajanKasi(), jakajanKasi());
-            switch (voittaja) {
-                case "pelaaja":
-                    panos = tuplausCheck(panos);
-                    rahaMaara += panos;
-                    break;
-                case "jakaja":
-                    rahaMaara -= panos;
-                    break;
+            if (voittaja.equals("pelaaja")) {
+                voitto = 2 * panos;
+                voitto = tuplausCheck(voitto);
+                rahaMaara += voitto;
+            }
+            else if (voittaja.equals("jakaja")) {
+                System.out.println("Hävisit rahasi!");
+            }
+            else {
+                voitto = panos;
+                rahaMaara += voitto;
+                System.out.println("Saat pitää rahasi.");
             }
             System.out.println("Sinulla on nyt " + rahaMaara + "0€");
             pelaa = jatkaminen();
