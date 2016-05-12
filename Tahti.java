@@ -4,9 +4,6 @@ package rahapeliSimulaattori;
 Simulaatio RAY-rahapeliautomaatin Tähti-pelistä. Merkit vastaavat alkuperäisen
 pelin hedelmiä ja kuvioita. Merkkejä voi lukita paikoilleen, jos ensimmäisellä
 yrittämällä ei voittoa tullut.
-=======================
-Tuomas Ravander 2016 
-=======================
 */
 public class Tahti extends Peli {
 
