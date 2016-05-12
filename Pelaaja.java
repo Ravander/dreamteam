@@ -2,9 +2,6 @@ package rahapeliSimulaattori;
 
 /*
 Pelaaja-luokkaan tallennetaan käyttäjän, eli pelaajan tärkeimmät tiedot.
-=======================
-Tuomas Ravander 2016 
-=======================
 */
 public class Pelaaja {
     
