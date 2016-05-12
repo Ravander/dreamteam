@@ -1,8 +1,18 @@
 package rahapeliSimulaattori;
+
 import java.util.Scanner;
 
+/*  
+Simulaation alustus ja eteneminen tapahtuu tässä pääluokassa.
+Luokka myös luo simulaatiolle oleelliset oliot ja huolehtii olioiden
+päivityksestä.
+=======================
+Tuomas Ravander 2016 
+=======================
+*/
 public class Pelisimulaattori {
 
+    /* PRIVATE-MUUTTUJAT */
     private static Scanner lukija = new Scanner(System.in);
     private static Pelaaja pelaaja;
     private static Tahti tahti;
@@ -10,16 +20,18 @@ public class Pelisimulaattori {
     private static Keno keno;
     
     public static void main(String[] args) {
-    
+      
         String valinta;
         alusta();
+        
+        /* Simulaation perusluuppi */
         do {
             valinta = valitsePeli(); 
             pelaaja.setRahaMaara( pelaa(valinta) );
         } while (valinta != "lopeta");          
     }
     
-    public static void alusta() {
+    private static void alusta() {
         
         tahti = new Tahti();
         ventti = new Ventti();
@@ -31,7 +43,7 @@ public class Pelisimulaattori {
         luoPelaaja();
     }
     
-    public static void luoPelaaja() {
+    private static void luoPelaaja() {
     
         System.out.println("Hei! Kuka olet?");
         System.out.print("> Olen ");
@@ -54,12 +66,17 @@ public class Pelisimulaattori {
         pelaaja = new Pelaaja(rahaMaara, nimi, ika);
     }
     
-    public static String valitsePeli() {
+    /*
+    Palauttaa String-muuttujana halutun toimenpiteen nimen, jonka
+    pelaa-metodi osaa lukea.
+    */
+    private static String valitsePeli() {
     
         System.out.println();
         System.out.println(" RAY-SKA Rahapelisimulaattori");
         System.out.println("=============================");
-        System.out.print(" " + pelaaja.getNimi() + "\t\t" + pelaaja.getRahaMaara() + "0 €\n" );
+        System.out.print(" " + pelaaja.getNimi() + 
+            "\t\t" + pelaaja.getRahaMaara() + "0 €\n" );
         System.out.println("=============================");
         System.out.println(" 0: LOPETA");
         System.out.println(" 1: TÄHTI");
@@ -69,12 +86,12 @@ public class Pelisimulaattori {
 		System.out.println(" 5: TALLETUS");
         System.out.println("=============================");
         System.out.print(" > ");
-        int valinta;
-        String peliValinta = "";
         
+        int valinta;
+        String peliValinta = "";       
         valinta = Peli.syotaInt();
-        switch (valinta) {
-    
+        
+        switch (valinta) {   
             case 1:
                 peliValinta = "tahti";
                 break;
@@ -116,7 +133,12 @@ public class Pelisimulaattori {
 		return maara;
 	}
     
-    public static double pelaa(String peli) {
+    /*
+    pelaa-metodi kutsuu Peli-luokan alaluokkien pelaa-metodia, joka palauttaa
+    pelin jälkeisen rahamäärän saldo-muuttujaan, josta main-funktio hoitaa
+    tietojen päivityksen pelaaja-oliolle.
+    */
+    private static double pelaa(String peli) {
     
         double panos, saldo = pelaaja.getRahaMaara();
         

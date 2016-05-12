@@ -1,14 +1,27 @@
 package rahapeliSimulaattori;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/*
+Peli-luokka simulaatioon implementoitavien pelien pohjaksi. Helpottaa
+huomattavasti pelien luontia sekä simulaattorin, pelien ja pelaajan välistä
+yhteistyötä.
+=======================
+Tuomas Ravander 2016 
+=======================
+*/
 public class Peli {
-    
+
+    /* PRIVATE-MUUTTUJAT */    
     private double panos, voitot;
+    
+    /* PUBLIC-MUUTTUJAT */
     public static Random arpa = new Random();
     public static Scanner lukija = new Scanner(System.in);
     
+    /* GET / SET */
     public void setPanos(double panos) {
         this.panos = panos;
     }
@@ -21,7 +34,8 @@ public class Peli {
     public double getVoitot() {
         return voitot;
     }
-    public boolean jatkaminen() {
+    
+    protected boolean jatkaminen() {
     
         System.out.println("Haluatko jatkaa? (k/e)");
         System.out.print("> ");
@@ -32,7 +46,7 @@ public class Peli {
 			return false;
 		}
     }
-    public double tuplausCheck(double voitto) {
+    protected double tuplausCheck(double voitto) {
     
         if (voitto > 0) {
             System.out.println("Haluatko tuplata? (k/e)");
@@ -64,8 +78,11 @@ public class Peli {
         }
     }
 	
-	//Error-handling
-	//==============
+	/*
+	Error-handling
+	================
+	Yksityiskohtaisempi tarkastelu käyttäjän syötteisiin.
+	*/
 	
 	public static int syotaInt() {
 		boolean onkoNumero = false;

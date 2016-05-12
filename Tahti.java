@@ -1,24 +1,34 @@
 package rahapeliSimulaattori;
 
+/*
+Simulaatio RAY-rahapeliautomaatin Tähti-pelistä. Merkit vastaavat alkuperäisen
+pelin hedelmiä ja kuvioita. Merkkejä voi lukita paikoilleen, jos ensimmäisellä
+yrittämällä ei voittoa tullut.
+=======================
+Tuomas Ravander 2016 
+=======================
+*/
 public class Tahti extends Peli {
 
+    /* PRIVATE-MUUTTUJAT */
     private char[] merkit = { 'a', 'b', 'c', 'd', '*' };
     private int[] lukitut = { 0, 0, 0 };
     
+    /* GET / SET */
     public int[] getLukitut() { return lukitut; }
     public void setLukitut(int[] lukitut) {
         this.lukitut = lukitut;
     }
     
-    private char arvoMerkki() { 
-      
+    private char arvoMerkki() {  
         int arvo = arpa.nextInt(5);           
         return merkit[arvo];    
     }
     
-    public String arvoRivi(char[] riviLista, int[] lukitusLista) {
+    private String arvoRivi(char[] riviLista, int[] lukitusLista) {   
     
         String tulosRivi = "";
+        
         for ( int i = 0; i < 3; i++ ) {
             if (lukitusLista[i] == 0) {
                 riviLista[i] = arvoMerkki();
@@ -28,27 +38,37 @@ public class Tahti extends Peli {
         return tulosRivi;
     }
     
-    public void lukitse() {
-    
+    private void lukitse() {
+       
         int[] lukot = new int[3];
+        int luku;
+        
         System.out.println("Valitse lukitukset");
         for (int i = 0; i < 3; i++) {
             System.out.print("> ");
-            lukot[i] = syotaInt();
+            luku = syotaInt();
+            if (luku == 1 || luku == 0) {
+                lukot[i] = luku;
+            } else {
+                System.out.println("Syötit virheellisen luvun");
+                System.out.println("Merkkiä ei lukittu");
+                lukot[i] = 0;
+            }
         }
         setLukitut(lukot);
     }
     
-    public void resetLukot() {
+    private void resetLukot() {
         int[] nollaus = { 0, 0, 0 };
         setLukitut(nollaus);
     }
     
-    public double tarkistaVoitto(String rivi, double panos) {
+    /* Tarkistaa voitot syötetyllä merkkiyhdistelmällä ja panoksella */
+    private double tarkistaVoitto(String rivi, double panos) {   
     
         double voitto = 0;
-        switch (rivi) {
-            
+        
+        switch (rivi) {           
             case "*ab": case "*ac": case "*ad": 
             case "*ba": case "*bc": case "*bd": 
             case "*ca": case "*cb": case "*cd": 
@@ -91,11 +111,13 @@ public class Tahti extends Peli {
         boolean pelaa = true;
         
         while (pelaa && rahaMaara >= panos) {
+        
             rahaMaara = rahaMaara - panos;
             char[] riviLista = { 'o', 'o', 'o' };
             resetLukot();
             rivi = arvoRivi( riviLista, getLukitut() );
             System.out.println(rivi);
+            
             if (tarkistaVoitto(rivi, panos) > 0) {
                 voitto = tarkistaVoitto(rivi, panos);
             } else {
@@ -104,10 +126,12 @@ public class Tahti extends Peli {
                 System.out.println(rivi);
                 voitto = tarkistaVoitto(rivi, panos);
             }
+            
             System.out.println("Voitto: " + voitto + "0 €" );
             voitto = tuplausCheck(voitto);
             rahaMaara += voitto;
             System.out.println("Sinulla on rahaa: " + rahaMaara + "0 €");
+            
             pelaa = jatkaminen();
         }
         return rahaMaara;        
