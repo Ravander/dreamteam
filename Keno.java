@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class Keno extends Peli {
 
-    private ArrayList<Integer> arvotutNumerot = new ArrayList();
-    private ArrayList<Integer> pelaajanNumerot = new ArrayList();
+    private ArrayList<Integer> arvotutNumerot = new ArrayList<Integer>();
+    private ArrayList<Integer> pelaajanNumerot = new ArrayList<Integer>();
     private int annetutNumerot = 0, osumat = 0;
     private final int[] voitto = {5, 0, 0, 1, 2, 4, 8, 16, 32};
 
