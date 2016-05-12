@@ -10,7 +10,9 @@ public class Ventti extends Peli {
     public void alustaPakka() {
         pakka.clear();
     }
-    public void taytaPakka() { //Täyttää pakan "korteilla" 2-14
+    
+    // "Kortit" ovat vain integerejä väliltä 2-14, koska ventissä maalla ei ole merkitystä 
+    public void taytaPakka() {
         for (int i=2; i<=14; i++) {
             for (int j=1; j<=4; j++) {
                 pakka.add(i);
@@ -21,6 +23,7 @@ public class Ventti extends Peli {
         jakajanKortit.clear();
         pelaajanKortit.clear();
     }
+    // Apumetodi käden arvon laskemiseen
     public int kadenArvo(ArrayList<Integer> kasi) {
         int arvo = 0;
         for (Integer lisays : kasi) {
@@ -28,12 +31,16 @@ public class Ventti extends Peli {
         }
         return arvo;
     }
+
     public int jako() {
         int jaetunIndeksi = arpa.nextInt( pakka.size() -1 );
         int jaettavaKortti = pakka.get(jaetunIndeksi);
         pakka.remove(jaetunIndeksi);
         return jaettavaKortti;
     }
+    
+    // "Jakajaa" simuloidaan tässä niin, että se ei tavoittele yli 17 arvoista kättä
+    // Jakaja saattaa silti mennä yli, mutta pyrkii ottamaan vähän vähemmän riskejä
     public ArrayList<Integer> jakajanKasi() {
         int jakajanArvo = 0;
         int jaettuKortti;
@@ -77,10 +84,14 @@ public class Ventti extends Peli {
                 }
             }
             System.out.print("Haluatko lisää kortteja (k/e)? ");
-            jatketaan = lukija.next().charAt(0);
+            jatketaan = syotaChar();
         } while (pelaajanArvo <= 21 && jatketaan !='e');
         return pelaajanKortit;
     }
+    
+    // Ventissä ässä on arvoltaan 1 tai 14, riippuen siitä kumpi on sopivampi
+    // Käytännössä ässän kannattaa aina olla 14, paitsi jos se aiheuttaa häviön
+    // Tällöin ässästä tulee 1, ja kortteja voidaan ottaa lisää
     public ArrayList<Integer> assanVaihto(ArrayList<Integer> vaihdettavatKortit) {
         for (int i=0; i<=vaihdettavatKortit.size()-1; i++) {
             if (vaihdettavatKortit.get(i) == 14) {
@@ -89,6 +100,8 @@ public class Ventti extends Peli {
         }
         return vaihdettavatKortit;
     }
+    
+    // Vertaillaan mahdollisia lopputuloksia
     public String kukaVoitti(ArrayList<Integer> pelaajanKortit, ArrayList<Integer> jakajanKortit) {
         int pelaajanArvo = kadenArvo(pelaajanKortit);
         int jakajanArvo = kadenArvo(jakajanKortit);
