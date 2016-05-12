@@ -8,9 +8,6 @@ import java.util.InputMismatchException;
 Peli-luokka simulaatioon implementoitavien pelien pohjaksi. Helpottaa
 huomattavasti pelien luontia sekä simulaattorin, pelien ja pelaajan välistä
 yhteistyötä.
-=======================
-Tuomas Ravander 2016 
-=======================
 */
 public class Peli {
 
